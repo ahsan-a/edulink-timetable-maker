@@ -1768,9 +1768,10 @@ duplexer@^0.1.2:
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.2.tgz#3abe43aef3835f8ae077d136ddce0f276b0400e6"
   integrity sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==
 
-"edulink-api@https://github.com/ahsan-a/Edulink-API.git":
-  version "0.4.0"
-  resolved "https://github.com/ahsan-a/Edulink-API.git#497feee4462f485c23261d0593f2117d3a8f3f12"
+edulink-api@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/edulink-api/-/edulink-api-0.5.0.tgz#0a272d3d51952ec01f693ec40849d978a2a538ad"
+  integrity sha512-78cfzHcQafd93dKg1D8ruhZeQDD7lCD4WhNe08Ce3kvJo8JVTRpkeLUgdFrEYBvdXZUmcf0c7KphBe1vx6efpg==
   dependencies:
     axios "^0.24.0"
     html-to-text "^8.1.0"
