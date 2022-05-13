@@ -117,7 +117,5 @@ function goGlobalEdit() {
 			}
 		}
 	}
-
-	console.log(selectedWeeks.value[0].days[0].lessons, editingWeeks.value[0].days[0].lessons);
 }
 </script>

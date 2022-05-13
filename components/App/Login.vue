@@ -90,4 +90,13 @@ async function login() {
 	errorMsg.value = '';
 	appState.value = AppState.WeekChoosing;
 }
+
+// thats better lmao
+if (process.dev) {
+	const { POSTCODE, NAME, PASSWORD } = useRuntimeConfig();
+
+	form.postcode = POSTCODE;
+	form.username = NAME;
+	form.password = PASSWORD;
+}
 </script>

@@ -46,9 +46,6 @@ import VTypical from 'vue-typical';
 import { themes } from '~/exports/themes';
 import { setTheme } from '~~/composables/theme';
 import { mobileCheck } from '~/composables/mobileCheck';
-import { useTestStore } from '~/store';
-
-const testStore = useTestStore();
 
 let currentTheme = useCurrentTheme();
 onMounted(() => {

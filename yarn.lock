@@ -633,6 +633,11 @@
     domhandler "^4.2.0"
     selderee "^0.6.0"
 
+"@sindresorhus/safe-stringify@^0.1.0":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@sindresorhus/safe-stringify/-/safe-stringify-0.1.1.tgz#3454186f93fe74aabfb7c71a552d74cd7d689b03"
+  integrity sha512-+tGKnryBl2bdT67Zy7ntWhxo5gto0Z30nbV7M+mGSoWsfDrjAbd3ti11iAZJC+kvGaY2IAE9XIrXc81lkwtTIw==
+
 "@trysound/sax@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
@@ -2863,13 +2868,6 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lzutf8@^0.6.0:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/lzutf8/-/lzutf8-0.6.2.tgz#c5f16c9dfa8a72ff2c4b9bd9579593a06c800c4d"
-  integrity sha512-+cXCQYarhT2BUW2S9m2sYs5w4q+uta5kW1qi5C7MVTfZKULMNiCou7K4bC2N1Wpw45cwfSx5fJ0LKhGuCMAZzA==
-  dependencies:
-    readable-stream "^3.6.0"
-
 magic-string@^0.25.7:
   version "0.25.9"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.9.tgz#de7f9faf91ef8a1c91d02c2e5314c8277dbcdd1c"
@@ -3565,14 +3563,17 @@ pify@^2.3.0:
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
   integrity sha1-7RQaasBDqEnqWISY59yosVMw6Qw=
 
-pinia-plugin-history@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/pinia-plugin-history/-/pinia-plugin-history-1.3.0.tgz#80d4e5b45ba42b0f0d10896b033179100eaad8dc"
-  integrity sha512-oKNzbp6AWV4kr1OBH696PiatFluTtTCi6efOFwBHTtkCvkidyrJ+J3DmKjpIMuq/vjhK6p7OPCxn7pxu79s6bA==
+pinia-undo@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/pinia-undo/-/pinia-undo-0.1.4.tgz#e02fe310d197602c85a1212504e2f7b64d216dc4"
+  integrity sha512-1+T4i0hjH/YcH8kmCoN5mtDC/h5K98ul/9Qw9vfhUfNQjtoaik56+VGIMUiNeUnHkgdiIzOh+BxchecT9EKvSA==
   dependencies:
-    lzutf8 "^0.6.0"
+    "@sindresorhus/safe-stringify" "^0.1.0"
+    pinia "^2.0.11"
+    undo-stacker "^0.1.0"
+    vue "^3.2.31"
 
-pinia@^2.0.14:
+pinia@^2.0.11, pinia@^2.0.14:
   version "2.0.14"
   resolved "https://registry.yarnpkg.com/pinia/-/pinia-2.0.14.tgz#0837898c20291ebac982bbfca95c8d3c6099925f"
   integrity sha512-0nPuZR4TetT/WcLN+feMSjWJku3SQU7dBbXC6uw+R6FLQJCsg+/0pzXyD82T1FmAYe0lsx+jnEDQ1BLgkRKlxA==
@@ -4692,6 +4693,13 @@ undici@^5.0.0:
   resolved "https://registry.yarnpkg.com/undici/-/undici-5.2.0.tgz#18c5bd59f8f1b1ed8dcc9dca2f754c44ec994059"
   integrity sha512-XY6+NS3WH9b3TKOHeNz2CjR+qrVz/k4fO9g3etPpLozRvULoQmZ1+dk9JbIz40ehn27xzFk4jYVU2MU3Nle62A==
 
+undo-stacker@^0.1.0:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/undo-stacker/-/undo-stacker-0.1.1.tgz#c99ab196f290396db733cc68b7c2432241ce156c"
+  integrity sha512-CQqZ+nPhrfvqUQqqHX0Mc5Y6oys6uvs9zagp/Mq/YJjM4/+tZuOF2oupF6svBXYpmZP3ebSt85Q2Qn9L6XaZBw==
+  dependencies:
+    "@sindresorhus/safe-stringify" "^0.1.0"
+
 unenv@^0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/unenv/-/unenv-0.5.2.tgz#98ab27dfbe5432b4ce79e1a4b42491e9bf1449cd"
@@ -4928,7 +4936,7 @@ vue-typical@^2.1.0:
   resolved "https://registry.yarnpkg.com/vue-typical/-/vue-typical-2.1.0.tgz#68731300f8b747548e0f36da0364d03614ba3a15"
   integrity sha512-vqfN08VgfhV8zuvf/UwDs4/P3VtQxHWK9ZshDwc1cEqWDUXzgwJwLiEUqYtksIug5wkhgoedyTAeEG6kJao6WA==
 
-vue@^3.2.33:
+vue@^3.2.31, vue@^3.2.33:
   version "3.2.33"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.33.tgz#7867eb16a3293a28c4d190a837bc447878bd64c2"
   integrity sha512-si1ExAlDUrLSIg/V7D/GgA4twJwfsfgG+t9w10z38HhL/HA07132pUQ2KuwAo8qbCyMJ9e6OqrmWrOCr+jW7ZQ==
