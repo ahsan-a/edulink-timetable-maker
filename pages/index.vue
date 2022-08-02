@@ -14,8 +14,7 @@
 					</p>
 					<p class="pt-6 text-base-content"
 						>Level up your timetable with Ahsan's new, fast and simple automated tool, working directly with the Edulink API.
-						{{ testStore.$state.foo }}</p
-					>
+					</p>
 					<p class="pt-2 text-base-content text-warning" v-if="mobileCheck()">Please be aware that this site is not intended for mobile.</p>
 				</div>
 				<div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">

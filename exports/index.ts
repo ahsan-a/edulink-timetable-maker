@@ -1,2 +1,2 @@
 export { AppState } from './appState';
-export { themes } from './themes';
+export { themes } from '~~/exports/themes';
