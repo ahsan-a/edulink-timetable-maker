@@ -1,4 +1,5 @@
 export enum AppState {
 	Login,
-	WeekChoosing,
+	Week,
+	GlobalEdit,
 }

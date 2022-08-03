@@ -40,9 +40,9 @@
 				<div class="overflow-x-auto">
 					<table class="table w-full mb-4" v-for="week in selectedWeeks">
 						<thead>
-							<tr>
+							<tr class="border-base-100 rounded-t-md border-1">
 								<th></th>
-								<th v-for="day in week.days">{{ day.original_name }}</th>
+								<th v-for="day in week.days">{{ day.name }} ({{ day.original_name }})</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -65,7 +65,7 @@ import { AppState } from '~/exports';
 import { Ref } from 'vue';
 import { URL } from 'url';
 
-const appState = useState('appState');
+const appState: Ref<AppState> = useState('appState');
 
 const timetableStatus: Ref<'week' | 'filter'> = ref('week');
 
@@ -88,7 +88,6 @@ const rowsToContinue = ref([]);
 const errormsg = ref('');
 
 function continueToFilter() {
-	const errormsg = ref('');
 	if (!Object.values(checked.value).find((x) => x)) return (errormsg.value = 'You must tick at least 1 item.');
 	errormsg.value = '';
 
@@ -96,14 +95,21 @@ function continueToFilter() {
 	for (const i in checked.value) {
 		if (checked.value[i]) selectedWeeks.value.push(timetable.value.weeks.find((x) => x.name === i));
 	}
-	timetableStatus.value = 'filter';
 
-	rowsToContinue.value = selectedWeeks.value[0].days[0].periods.map((x) => true);
+	// filters invalid days by removing days with an invalid cycle day id
+	for (const i in selectedWeeks.value) {
+		selectedWeeks.value[i].days = selectedWeeks.value[i].days.filter((x) => x.cycle_day_id > 0);
+	}
+
+	// selected periods to have in final timetable
+	rowsToContinue.value = selectedWeeks.value[0].days[0].periods.map(() => true);
+
+	timetableStatus.value = 'filter';
 }
 
 const editingWeeks = useState<typeof selectedWeeks.value>('editingWeeks');
 function goGlobalEdit() {
-	// get all rows where false continue
+	// get all rows where continue is false
 	let deleteRows = rowsToContinue.value.map((x, i) => (x ? null : i)).filter((x) => x !== null);
 
 	editingWeeks.value = JSON.parse(JSON.stringify(selectedWeeks.value));
@@ -111,11 +117,13 @@ function goGlobalEdit() {
 	for (let i of deleteRows) {
 		for (let j = 0; j < editingWeeks.value.length; j++) {
 			for (let k = 0; k < editingWeeks.value[j].days.length; k++) {
-				// periods and lessons
+				// periods and lessons, not a repetition
 				editingWeeks.value[j].days[k].periods.splice(i, 1);
 				editingWeeks.value[j].days[k].lessons.splice(i, 1);
 			}
 		}
 	}
+	console.log(editingWeeks.value);
+	appState.value = AppState.GlobalEdit;
 }
 </script>

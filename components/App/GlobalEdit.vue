@@ -1,7 +1,7 @@
 <template>
 	<div class="hero-content flex-col">
-		<h1 class="text-7xl font-bold">Step One.</h1>
-		<p class="text-xl font-medium">Enter your edulink login details.</p>
+		<h1 class="text-7xl font-bold">Step Three.</h1>
+		<p class="text-xl font-medium">Make global edits to your final timetable, such as colour and text.</p>
 		<div class="card flex-shrink-0 w-full w-22rem shadow-2xl bg-base-200">
 			<form class="card-body" @submit.prevent="login">
 				<p class="text-xs text-error font-medium" v-if="errorMsg">
