@@ -63,9 +63,10 @@
 <script setup lang="ts">
 import { AppState } from '~/exports';
 import { Ref } from 'vue';
-import { URL } from 'url';
+import { useTimetable } from '~/store/timetable';
 
 const appState: Ref<AppState> = useState('appState');
+const Timetable = useTimetable();
 
 const timetableStatus: Ref<'week' | 'filter'> = ref('week');
 
@@ -123,7 +124,7 @@ function goGlobalEdit() {
 			}
 		}
 	}
-	console.log(editingWeeks.value);
 	appState.value = AppState.GlobalEdit;
+	Timetable.$state = editingWeeks.value;
 }
 </script>

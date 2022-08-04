@@ -1,106 +1,48 @@
 <template>
 	<div class="hero-content flex-col">
 		<h1 class="text-7xl font-bold">Step Three.</h1>
-		<p class="text-xl font-medium">Make global edits to your final timetable, such as colour and text.</p>
-		<div class="card flex-shrink-0 w-full w-22rem shadow-2xl bg-base-200">
-			<form class="card-body" @submit.prevent="login">
-				<p class="text-xs text-error font-medium" v-if="errorMsg">
-					<span class="font-extrabold">ERROR: </span>
-					{{ errorMsg }}
-				</p>
-				<div class="form-control">
-					<label class="label">
-						<span class="label-text font-medium">School Postcode</span>
-					</label>
-					<input
-						type="text"
-						name="postcode"
-						placeholder="School Postcode"
-						class="input input-bordered bg-base-200"
-						v-model="form.postcode"
-						autocomplete="postal-code"
-						required
-					/>
+		<p class="text-xl font-medium">Make global edits to your final timetable.</p>
+		<button class="link link-primary ml-0" @click="appState = AppState.Week">&lt; Go back</button>
+		<div class="flex flex-row mt-2">
+			<div class="overflow-x-auto">
+				<table class="table w-full mb-3" v-for="week in Timetable.$state">
+					<!-- head -->
+					<thead>
+						<tr>
+							<th></th>
+							<th v-for="day in week.days">{{ day.name }}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="i in week.days[0].periods.length">
+							<th>{{ i }}</th>
+							<td v-for="j in week.days.length" class="text-sm">{{ week.days[j - 1].lessons[i - 1].teaching_group.subject }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="ml-6 card w-145 bg-base-300 shadow-xl">
+				<div class="card-body">
+					<h1 class="card-title text-2xl">General Edits</h1>
+					<div class="form-control w-full max-w-xs">
+						<label class="label">
+							<span class="label-text">Day Position</span>
+						</label>
+						<select class="select select-bordered">
+							<option>Top</option>
+							<option>Left</option>
+						</select>
+					</div>
 				</div>
-				<div class="form-control">
-					<label class="label">
-						<span class="label-text font-medium">Username</span>
-					</label>
-					<input
-						type="text"
-						name="username"
-						placeholder="Username"
-						class="input input-bordered bg-base-200"
-						autocomplete="username"
-						v-model="form.username"
-						required
-					/>
-				</div>
-				<div class="form-control">
-					<label class="label">
-						<span class="label-text font-medium">Password</span>
-					</label>
-					<input
-						type="password"
-						placeholder="Password"
-						class="input input-bordered bg-base-200"
-						autocomplete="current-password"
-						v-model="form.password"
-						required
-					/>
-				</div>
-				<div class="form-control mt-6">
-					<button class="btn btn-primary" type="submit">Login</button>
-				</div>
-				<p class="text-info text-xs font-semibold text-center mt-2"
-					>Your credentials are needed to retrieve your timetable from Edulink, and are not stored on the website nor are accessible by me.
-					(wallahi)</p
-				>
-			</form>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
 import { AppState } from '~/exports';
-
-const form = reactive({
-	postcode: '',
-	username: '',
-	password: '',
-});
-
-const errorMsg = ref('');
-
-const Edulink = useEdulink();
-
-const appState = useState('appState');
-
-async function login() {
-	// is actually used
-	const errormsg = ref('');
-	if (!form.password || !form.postcode || !form.username) return;
-
-	try {
-		await Edulink.Authenticate({
-			school_code: form.postcode,
-			username: form.username,
-			password: form.password,
-		});
-	} catch (e) {
-		return (errorMsg.value = e.message);
-	}
-
-	errorMsg.value = '';
-	appState.value = AppState.Week;
-}
-
-// thats better lmao
-if (process.dev) {
-	const { POSTCODE, NAME, PASSWORD } = useRuntimeConfig();
-
-	form.postcode = POSTCODE;
-	form.username = NAME;
-	form.password = PASSWORD;
-}
+import { Ref } from 'vue';
+import { useTimetable } from '~/store/timetable';
+const appState: Ref<AppState> = useState('appState');
+const Timetable = useTimetable();
 </script>
