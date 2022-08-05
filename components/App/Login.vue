@@ -1,62 +1,64 @@
 <template>
-	<div class="hero-content flex-col">
-		<h1 class="text-7xl font-bold">Step One.</h1>
-		<p class="text-xl font-medium">Enter your edulink login details.</p>
-		<div class="card flex-shrink-0 w-full w-22rem shadow-2xl bg-base-200">
-			<form class="card-body" @submit.prevent="login">
-				<p class="text-xs text-error font-medium" v-if="errorMsg">
-					<span class="font-extrabold">ERROR: </span>
-					{{ errorMsg }}
-				</p>
-				<div class="form-control">
-					<label class="label">
-						<span class="label-text font-medium">School Postcode</span>
-					</label>
-					<input
-						type="text"
-						name="postcode"
-						placeholder="School Postcode"
-						class="input input-bordered bg-base-200"
-						v-model="form.postcode"
-						autocomplete="postal-code"
-						required
-					/>
-				</div>
-				<div class="form-control">
-					<label class="label">
-						<span class="label-text font-medium">Username</span>
-					</label>
-					<input
-						type="text"
-						name="username"
-						placeholder="Username"
-						class="input input-bordered bg-base-200"
-						autocomplete="username"
-						v-model="form.username"
-						required
-					/>
-				</div>
-				<div class="form-control">
-					<label class="label">
-						<span class="label-text font-medium">Password</span>
-					</label>
-					<input
-						type="password"
-						placeholder="Password"
-						class="input input-bordered bg-base-200"
-						autocomplete="current-password"
-						v-model="form.password"
-						required
-					/>
-				</div>
-				<div class="form-control mt-6">
-					<button class="btn btn-primary" type="submit">Login</button>
-				</div>
-				<p class="text-info text-xs font-semibold text-center mt-2"
-					>Your credentials are needed to retrieve your timetable from Edulink, and are not stored on the website nor are accessible by me.
-					(wallahi)</p
-				>
-			</form>
+	<div class="flex-grow flex-shrink basis-auto hero bg-base-100">
+		<div class="hero-content flex-col">
+			<h1 class="text-7xl font-bold">Step One.</h1>
+			<p class="text-xl font-medium">Enter your edulink login details.</p>
+			<div class="card flex-shrink-0 w-full w-22rem shadow-2xl bg-base-200">
+				<form class="card-body" @submit.prevent="login">
+					<p class="text-xs text-error font-medium" v-if="errorMsg">
+						<span class="font-extrabold">ERROR: </span>
+						{{ errorMsg }}
+					</p>
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text font-medium">School Postcode</span>
+						</label>
+						<input
+							type="text"
+							name="postcode"
+							placeholder="School Postcode"
+							class="input input-bordered bg-base-200"
+							v-model="form.postcode"
+							autocomplete="postal-code"
+							required
+						/>
+					</div>
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text font-medium">Username</span>
+						</label>
+						<input
+							type="text"
+							name="username"
+							placeholder="Username"
+							class="input input-bordered bg-base-200"
+							autocomplete="username"
+							v-model="form.username"
+							required
+						/>
+					</div>
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text font-medium">Password</span>
+						</label>
+						<input
+							type="password"
+							placeholder="Password"
+							class="input input-bordered bg-base-200"
+							autocomplete="current-password"
+							v-model="form.password"
+							required
+						/>
+					</div>
+					<div class="form-control mt-6">
+						<button class="btn btn-primary" type="submit">Login</button>
+					</div>
+					<p class="text-info text-xs font-semibold text-center mt-2"
+						>Your credentials are needed to retrieve your timetable from Edulink, and are not stored on the website nor are accessible by
+						me. (wallahi)</p
+					>
+				</form>
+			</div>
 		</div>
 	</div>
 </template>

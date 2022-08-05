@@ -8,3 +8,13 @@ export const useTimetable = defineStore('Timetable', {
 	//@ts-ignore
 	state: (): { name: string; days: Edulink_Timetable_Day[] }[] => ({}),
 });
+
+export const useModifications = defineStore('Modifications', {
+	state: (): {
+		periodNumber: boolean;
+		dayPosition: 'left' | 'top';
+	} => ({
+		periodNumber: true,
+		dayPosition: 'left',
+	}),
+});
