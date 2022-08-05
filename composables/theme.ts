@@ -1,4 +1,3 @@
-import { Ref } from 'vue';
 import { themes } from '~/exports/themes';
 import { useCurrentTheme } from './states';
 
@@ -27,5 +26,6 @@ export function themeInit() {
 			localStorage.setItem('theme', 'dracula');
 			return 'dracula';
 		}
-	} else return 'dracula';
+	}
+	return 'dracula';
 }

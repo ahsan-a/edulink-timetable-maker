@@ -10,7 +10,7 @@
 		"nuxt-windicss": "^2.2.8"
 	},
 	"dependencies": {
-		"@pinia/nuxt": "^0.1.9",
+		"@pinia/nuxt": "^0.3.1",
 		"daisyui": "^2.13.6",
 		"edulink-api": "^0.5.0",
 		"pinia": "^2.0.14",

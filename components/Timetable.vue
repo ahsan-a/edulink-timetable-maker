@@ -3,9 +3,10 @@
 		<table class="table w-full my-2">
 			<thead>
 				<tr>
-					<th v-if="mods.$state.periodNumber"></th>
+					<th v-if="mods.$state.periodNumber" class="bg-base-200"></th>
 					<th
 						class="bg-base-100"
+						:class="{ 'bg-base-200': ['t', 'tl'].includes(mods.$state.titleHighlightPos) }"
 						v-if="mods.$state.dayPosition === 'left' && mods.$state.periodNumber"
 						v-for="(_, i) in week.days[0].periods.length"
 						>{{ i + 1 }}</th
@@ -15,7 +16,20 @@
 			</thead>
 			<tbody>
 				<tr v-if="mods.$state.dayPosition === 'left'" v-for="day in week.days">
-					<th class="bg-base-200">{{ day.name }}</th>
+					<!-- i'm sorry -->
+					<th
+						class="bg-base-100"
+						:style="[
+							['l', 'tl'].includes(mods.$state.titleHighlightPos)
+								? !mods.$state.titleHighlightCustom
+									? {
+											'background-color': `hsl(var(--${mods.$state.titleHighlight}))`,
+									  }
+									: { 'background-color': mods.$state.titleHighlight }
+								: {},
+						]"
+						>{{ day.name }}</th
+					>
 					<td v-for="lesson in day.lessons" class="text-sm">{{ lesson.teaching_group.subject }}</td>
 				</tr>
 				<tr v-if="mods.$state.dayPosition === 'top'" v-for="i in week.days[0].periods.length">
