@@ -56,10 +56,19 @@
 									<option value="l">Left</option>
 								</select>
 							</div>
-							<label class="label">
-								<span class="label-text">Title Highlight Colour</span>
-							</label>
-							<ColourPicker :colour="mods.$state.titleHighlight" />
+							<div class="form-control w-full max-w-xs flex flex-row mt-2">
+								<ColourPicker
+									:colour="mods.$state.titleHighlight"
+									:custom="mods.$state.titleHighlightCustom"
+									@setColour="
+										(colour, custom) => {
+											mods.$state.titleHighlight = colour;
+											mods.$state.titleHighlightCustom = custom;
+										}
+									"
+								/>
+								<span class="ml-2 text-sm">Title Highlight Colour</span>
+							</div>
 						</div>
 					</div>
 				</div>
